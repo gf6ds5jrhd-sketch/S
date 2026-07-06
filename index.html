@@ -2,20 +2,17 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Entità Autonoma 3D</title>
+    <title>La Mia Entità Autonoma</title>
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     
     <script>
       AFRAME.registerComponent('movimento-autonomo', {
         init: function () {
-          // Impostiamo una nuova destinazione casuale ogni 3 secondi (3000 millisecondi)
           setInterval(() => {
-            // Genera coordinate casuali sulla griglia (X tra -5 e 5, Z tra -2 e -10 davanti a noi)
             let randomX = (Math.random() - 0.5) * 10;
             let randomZ = -(Math.random() * 8 + 2); 
             let nuovaPosizione = `${randomX} 1 ${randomZ}`;
             
-            // Applica l'animazione di movimento fluida verso la nuova destinazione
             this.el.setAttribute('animation', {
               property: 'position',
               to: nuovaPosizione,
@@ -30,17 +27,20 @@
   <body>
     <a-scene>
       <a-sky color="#000000"></a-sky>
-      
       <a-entity light="type: ambient; intensity: 0.8; color: #ffffff"></a-entity>
       <a-entity light="type: directional; intensity: 0.6" position="2 4 3"></a-entity>
-      
       <a-entity geometry="primitive: plane; width: 100; height: 100" rotation="-90 0 0" material="color: #ffffff; wireframe: true; opacity: 0.2"></a-entity>
       
-      <a-box id="entita" 
-             position="0 1 -5" 
-             material="color: #00ffcc; metalness: 0.5; roughness: 0.2"
-             movimento-autonomo>
-      </a-box>
+      <a-assets>
+        <a-asset-item id="la-mia-entita" src="">https://limewire.com/d/IIH6w#qOynYg4IDZ</a-asset-item>
+      </a-assets>
+
+      <a-entity id="entita-vera" 
+                gltf-model="#la-mia-entita"
+                position="0 1 -4" 
+                scale="1 1 1"
+                movimento-autonomo>
+      </a-entity>
 
       <a-entity camera look-controls position="0 1.6 0"></a-entity>
     </a-scene>
